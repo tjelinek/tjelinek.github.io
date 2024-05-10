@@ -115,7 +115,7 @@ author:
   name             : # "Tomas Jelinek"
   avatar           : "/assets/images/profile2.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Ph.D. Candidate    in Computer Vision"
-  location         : "Prague"
+  location         : "Czech Technical University in Prague"
   email            :
   links:
     - label: "Email"
@@ -139,6 +139,9 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/jelinek-t/"
+    - label: "Google Scholar"
+      icon: "fab fa-fw fa-google-scholar"
+      url: "https://scholar.google.com/citations?user=6uDBx7gAAAAJ&hl=en"
     
 # Site Footer
 footer:
