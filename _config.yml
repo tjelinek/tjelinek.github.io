@@ -140,7 +140,7 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/jelinek-t/"
     - label: "Google Scholar"
-      icon: "fab fa-fw fa-graduation-cap"
+      icon: "fab fa-fw fa-google-scholar"
       url: "https://scholar.google.com/citations?user=6uDBx7gAAAAJ&hl=en"
     
 # Site Footer
