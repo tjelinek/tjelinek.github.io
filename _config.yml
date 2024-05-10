@@ -21,7 +21,7 @@ title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Tomáš Jelínek"
 description              : &description "PhD Candidate the Czech Technical University"
-url                      : https://tjelinek.github.io/
+url                      : https://tjelinek.github.io
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "tjelinek/tjelinek.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
