@@ -20,7 +20,7 @@ title                    : "Tomáš Jelínek"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : &name "Tomáš Jelínek"
-description              : &description "PhD Candidate the Czech Technical University"
+description              : &description "PhD Candidate at the Czech Technical University"
 url                      : https://tjelinek.github.io
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "tjelinek/tjelinek.github.io"
@@ -115,7 +115,7 @@ author:
   name             : # "Tomas Jelinek"
   avatar           : "/assets/images/profile2.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Ph.D. Candidate    in Computer Vision"
-  location         : "Czech Technical University in Prague"
+  location         : "Czech Technical University"
   email            :
   links:
     - label: "Email"
