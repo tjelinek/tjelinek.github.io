@@ -114,13 +114,13 @@ analytics:
 author:
   name             : # "Tomas Jelinek"
   avatar           : "/assets/images/profile2.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Ph.D. Candidate    in Computer Vision"
-  location         : "Czech Technical University"
+  bio              : "3D Perception Engineer"
+  location         : "Prague, Czech Republic"
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:tomas.jelinek@fel.cvut.cz"
+      url: "mailto:tomasjelinek96@gmail.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
