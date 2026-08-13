@@ -10,7 +10,7 @@ mathjax: true
 excerpt: "Condensing an onboarding-video template bank to a handful of diverse views per object, removing 90 to 99 percent of templates while keeping detection quality, without a CAD model."
 ---
 
-*Research project; not submitted. The selection problem it raises reappears in my [data-curation agenda](#toward-one-correspondence-model).*
+*Research project; not submitted.*
 
 ## Background
 
@@ -65,4 +65,4 @@ True positives are classified into their classes well; specificity is the hard p
 
 ## Toward one correspondence model
 
-The same selection pressure (keep the informative examples, drop the redundant mass) reappears at fleet scale in data curation, and the detection, classification, and pose stages above all reduce to establishing correspondences. That points to a single correspondence-centric model shared across detection, matching, and pose, in the spirit of NeMO, which is the direction I develop in my research statement and the [reconstruction work](/reconstruction/).
+The detection, classification, and pose stages above all reduce to establishing correspondences. That points to a single correspondence-centric model shared across detection, matching, and pose, in the spirit of NeMO, connecting to the [reconstruction work](/reconstruction/).

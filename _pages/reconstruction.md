@@ -37,7 +37,7 @@ The problem looks simple, and its solution is arguably a fairly plain structure-
 
 ## Where I would take it next
 
-If I started over, I would move closer to an end-to-end solution in the spirit of NeMO: an encoder that produces the reconstruction alongside a latent representation, and a decoder that detects the object, computes a matching, and directly regresses a pose consistent with that matching. This is the same correspondence-centric direction I sketch in the [research agenda](/template-condensation/#toward-one-correspondence-model).
+If I started over, I would move closer to an end-to-end solution in the spirit of NeMO: an encoder that produces the reconstruction alongside a latent representation, and a decoder that detects the object, computes a matching, and directly regresses a pose consistent with that matching.
 
 ## Links
 
