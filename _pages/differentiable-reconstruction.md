@@ -18,7 +18,7 @@ Building on the model-free tracker of Rozumnyi et al., we are given a video stre
 
 ## Objective
 
-The poses and mesh are fit over a sparse keyframe set $$K_n \subseteq \{1, \dots, n-1\}$$. Let $$\hat{I}_i$$ and $$\hat{S}_i$$ be the appearance and silhouette rendered from $$M$$ at pose $$\mathbf{p}_i = (T_i, Q_i)$$ (translation and unit quaternion), $$F(I_i)$$ the deep features of frame $$I_i$$, $$S_i$$ its input segmentation, and $$\mu_n = (|K_n| + 1)^{-1}$$. The appearance term uses a Cauchy robust norm $$\lVert \cdot \rVert_\gamma$$, the silhouette term an IoU plus a distance-transform ($$\mathrm{DT}$$) penalty:
+The poses and mesh are fit over a sparse keyframe set $$K_n \subseteq \{1, \dots, n-1\}$$. Let $$\hat{I}_i$$ and $$\hat{S}_i$$ be the appearance and silhouette rendered from $$M$$ at pose $$\mathbf{p}_i = (T_i, Q_i)$$ (translation and unit quaternion), $$F(I_i)$$ the deep features of frame $$I_i$$, $$S_i$$ its input segmentation, and $$\mu_n = (\lvert K_n \rvert + 1)^{-1}$$. The appearance term uses a Cauchy robust norm $$\lVert \cdot \rVert_\gamma$$, the silhouette term an IoU plus a distance-transform ($$\mathrm{DT}$$) penalty:
 
 $$
 L_F = \mu_n \!\!\sum_{i \in K_n \cup \{n\}}\!\! \big\lVert \hat{S}_i \cdot (\hat{I}_i - F(I_i)) \big\rVert_\gamma,

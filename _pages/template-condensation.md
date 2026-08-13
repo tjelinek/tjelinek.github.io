@@ -32,7 +32,7 @@ accepted as a detection when $$s_j \ge \theta$$ for a global threshold $$\theta$
 
 ## The problem with an onboarding bank
 
-Matching cost grows linearly with the bank: every proposal is compared against all $$\sum_i |T_i|$$ templates. Built from an onboarding video rather than a few CAD renders, the bank holds hundreds of highly redundant views per object. Worse, the $$k$$ most similar templates tend to come from nearly the same viewpoint, which weakens the assignment.
+Matching cost grows linearly with the bank: every proposal is compared against all $$\sum_i \lvert T_i \rvert$$ templates. Built from an onboarding video rather than a few CAD renders, the bank holds hundreds of highly redundant views per object. Worse, the $$k$$ most similar templates tend to come from nearly the same viewpoint, which weakens the assignment.
 
 ## Condensation
 
