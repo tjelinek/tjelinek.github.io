@@ -53,4 +53,4 @@ On TAP-Vid DAVIS (30 sequences at $$512 \times 512$$), fusing RoMa into MFT rais
 
 The choice of matcher matters: substituting a different dense matcher, DKM, instead degraded tracking sharply. The gain therefore comes from the matcher's wide-baseline robustness, not from ensembling a second model per se. The paper was completed end-to-end in about two and a half weeks on top of the existing MFT infrastructure.
 
-**Links.** Paper: CVWW 2024 (link to confirm). Code: repository link to confirm.
+**Links.** [Paper (CVWW 2024, arXiv:2402.11287)](https://arxiv.org/abs/2402.11287).
