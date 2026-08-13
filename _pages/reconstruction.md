@@ -14,7 +14,7 @@ excerpt: "Model-free reconstruction of a rigid object from a single hand-held vi
 
 ## Problem
 
-Given a video stream $(\mathcal{I}_1, \dots, \mathcal{I}_n)$ capturing a rigid object, a first-frame segmentation mask $\mathcal{S}_1$, and known camera intrinsics $(\mathcal{K}_1, \dots, \mathcal{K}_n)$, the goal is to recover the object's 3D point cloud $\mathcal{M}$ together with the camera poses expressed in the object's own frame.
+Given a video stream $$(\mathcal{I}_1, \dots, \mathcal{I}_n)$$ capturing a rigid object, a first-frame segmentation mask $$\mathcal{S}_1$$, and known camera intrinsics $$(\mathcal{K}_1, \dots, \mathcal{K}_n)$$, the goal is to recover the object's 3D point cloud $$\mathcal{M}$$ together with the camera poses expressed in the object's own frame.
 
 When the object is rigid with respect to a textured background, this is easy: reconstruct the whole scene, by structure-from-motion or a feed-forward network such as VGGT, and keep the points that fall inside the mask. The hard regime, and the one I care about, is a hand-held object turned over in front of the camera. There the feed-forward reconstructors collapse, and masking the background with a uniform color produces a broken reconstruction, presumably because such an input is out of distribution for these methods. Point trackers give long tracks, which structure-from-motion likes, but they too fail once the scene is dynamic.
 
@@ -26,10 +26,10 @@ The solution is built as a structure-from-motion pipeline resting on pairwise co
 
 The pipeline runs in four stages.
 
-1. **Dense matching.** SAM2 propagates $\mathcal{S}_1$ to every frame; the dense matcher UFM then produces dense matches with per-match certainties on the unmasked frames. I add a segmentation input channel and fine-tune the matcher on objects held out from the test set, so that it is forced to produce correct correspondences between the source and target masks, treating that region as a single rigid body while the rest of the scene is free to move. Keyframes are selected online by the share of confident matches.
+1. **Dense matching.** SAM2 propagates $$\mathcal{S}_1$$ to every frame; the dense matcher UFM then produces dense matches with per-match certainties on the unmasked frames. I add a segmentation input channel and fine-tune the matcher on objects held out from the test set, so that it is forced to produce correct correspondences between the source and target masks, treating that region as a single rigid body while the rest of the scene is free to move. Keyframes are selected online by the share of confident matches.
 2. **Match filtering.** A match is kept only when both of its endpoints fall inside the propagated masks, so the reconstructed points belong to the object rather than to the background.
 3. **Track merging.** The surviving matches are chained across frames into multi-view feature tracks. This prevents duplicate reconstruction and substantially increases robustness.
-4. **Reconstruction.** Incremental structure-from-motion (COLMAP) with intrinsics held fixed recovers the camera poses and a sparse cloud. To obtain a dense cloud $\mathcal{M}$, the model is densified with frame-wise correspondences at the recovered poses.
+4. **Reconstruction.** Incremental structure-from-motion (COLMAP) with intrinsics held fixed recovers the camera poses and a sparse cloud. To obtain a dense cloud $$\mathcal{M}$$, the model is densified with frame-wise correspondences at the recovered poses.
 
 ## Why it is hard
 

@@ -24,33 +24,33 @@ MFT tracks a point by chaining optical flow over logarithmically spaced baseline
 
 ## Method
 
-MFT builds a long-term flow by chaining through an intermediate frame $i_M$. Writing $\mathcal{F}^{(i,j)}$ for the flow from frame $i$ to $j$ and $\mathbf{p}_i = \mathbf{p}_1 + \mathcal{F}_{\mathrm{MFT}}^{(1,i)}(\mathbf{p}_1)$ for the tracked position of a reference point $\mathbf{p}_1$,
+MFT builds a long-term flow by chaining through an intermediate frame $$i_M$$. Writing $$\mathcal{F}^{(i,j)}$$ for the flow from frame $$i$$ to $$j$$ and $$\mathbf{p}_i = \mathbf{p}_1 + \mathcal{F}_{\mathrm{MFT}}^{(1,i)}(\mathbf{p}_1)$$ for the tracked position of a reference point $$\mathbf{p}_1$$,
 
 $$
 \mathcal{F}_{\mathrm{MFT}}^{(1,j)}(\mathbf{p}_1) = \mathcal{F}_{\mathrm{MFT}}^{(1,i_M)}(\mathbf{p}_1) + \mathcal{F}^{(i_M,j)}(\mathbf{p}_{i_M}),
 $$
 
-where $i_M = j - \Delta_k$ (log-spaced $\Delta_k = 2^{k-1}$) is the intermediate frame whose chain accumulates the lowest variance $\sigma$ among chains with no occluded point. The variance and the occlusion score $o$ accumulate along a chain as
+where $$i_M = j - \Delta_k$$ (log-spaced $$\Delta_k = 2^{k-1}$$) is the intermediate frame whose chain accumulates the lowest variance $$\sigma$$ among chains with no occluded point. The variance and the occlusion score $$o$$ accumulate along a chain as
 
 $$
 \sigma^{(1,i_M,j)} = \sigma_{\mathrm{MFT}}^{(1,i_M)} + \sigma^{(i_M,j)}, \qquad
 o^{(1,i_M,j)} = \max\!\big(o_{\mathrm{MFT}}^{(1,i_M)},\, o^{(i_M,j)}\big).
 $$
 
-For a matcher to slot into this scheme it has to supply a variance and an occlusion score. RoMa provides neither, only a per-match certainty $\rho \in [0,1]$, so both are derived from it:
+For a matcher to slot into this scheme it has to supply a variance and an occlusion score. RoMa provides neither, only a per-match certainty $$\rho \in [0,1]$$, so both are derived from it:
 
 $$
 o = 1 - \rho, \qquad
 \sigma = \begin{cases} 0 & \text{if } \rho \ge \theta_\rho, \\ 1000 & \text{otherwise,} \end{cases}
 $$
 
-treating a match as confident and zero-variance when its certainty clears $\theta_\rho$, and otherwise assigning a variance well above any observed value. A point is called occluded when $o$ exceeds a threshold, set to $\theta_o^{\mathrm{RoMa}} = 0.95$ for RoMa against $\theta_o^{\mathrm{RAFT}} = 0.02$ for RAFT.
+treating a match as confident and zero-variance when its certainty clears $$\theta_\rho$$, and otherwise assigning a variance well above any observed value. A point is called occluded when $$o$$ exceeds a threshold, set to $$\theta_o^{\mathrm{RoMa}} = 0.95$$ for RoMa against $$\theta_o^{\mathrm{RAFT}} = 0.02$$ for RAFT.
 
 ## Result
 
-On TAP-Vid DAVIS (30 sequences at $512 \times 512$), fusing RoMa into MFT raises the Average Jaccard from 47.4 to 51.6 over the MFT-RAFT baseline. The gain is concentrated in position accuracy: at $\delta_{\mathrm{avg}} = 73.4$ this strictly causal ensemble rivals the non-causal, attention-refined sparse trackers TAPIR (70.0) and approaches CoTracker (75.9), while trading away some occlusion accuracy.
+On TAP-Vid DAVIS (30 sequences at $$512 \times 512$$), fusing RoMa into MFT raises the Average Jaccard from 47.4 to 51.6 over the MFT-RAFT baseline. The gain is concentrated in position accuracy: at $$\delta_{\mathrm{avg}} = 73.4$$ this strictly causal ensemble rivals the non-causal, attention-refined sparse trackers TAPIR (70.0) and approaches CoTracker (75.9), while trading away some occlusion accuracy.
 
-| Position / Occlusion | AJ | $\delta_{\mathrm{avg}}$ | OA |
+| Position / Occlusion | AJ | $$\delta_{\mathrm{avg}}$$ | OA |
 |---|---|---|---|
 | RAFT / RAFT | 47.4 | 67.1 | 77.7 |
 | RoMa / RoMa | 48.8 | 72.7 | 71.7 |
