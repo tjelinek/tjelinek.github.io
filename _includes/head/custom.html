@@ -18,6 +18,9 @@
 
 <!-- Masthead "Projects" dropdown menu -->
 <style>
+  /* The theme clips .visible-links with overflow:hidden, which hides the
+     absolutely-positioned dropdown. Allow it to spill out. */
+  .greedy-nav .visible-links { overflow: visible !important; }
   .masthead__menu-item--has-children { position: relative; }
   .masthead__menu-caret { font-size: 0.7em; opacity: 0.7; }
   .masthead__submenu {
