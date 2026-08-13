@@ -1,12 +1,10 @@
 # main links
 main:
-#  - title: "Quick-Start Guide"
-#    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-#   - title: "CV"
-#     url: https://tjelinek.github.io/files/CV.pdf
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "3D Object Reconstruction"
+    url: /reconstruction/
+  - title: "Dense Tracking"
+    url: /dense-tracking/
+  - title: "Template Condensation"
+    url: /template-condensation/
+  - title: "Differentiable Reconstruction"
+    url: /differentiable-reconstruction/
