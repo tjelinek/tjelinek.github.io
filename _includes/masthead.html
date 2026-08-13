@@ -13,13 +13,34 @@
         </a>
         <ul class="visible-links">
           {%- for link in site.data.navigation.main -%}
-            <li class="masthead__menu-item">
-              <a
-                href="{{ link.url | relative_url }}"
-                {% if link.description %} title="{{ link.description }}"{% endif %}
-                {% if link.target %} target="{{ link.target }}"{% endif %}
-              >{{ link.title }}</a>
-            </li>
+            {%- if link.children -%}
+              <li class="masthead__menu-item masthead__menu-item--has-children">
+                <a
+                  href="{{ link.url | relative_url }}"
+                  aria-haspopup="true"
+                  {% if link.description %} title="{{ link.description }}"{% endif %}
+                  {% if link.target %} target="{{ link.target }}"{% endif %}
+                >{{ link.title }} <span class="masthead__menu-caret" aria-hidden="true">&#9662;</span></a>
+                <ul class="masthead__submenu">
+                  {%- for child in link.children -%}
+                    <li>
+                      <a
+                        href="{{ child.url | relative_url }}"
+                        {% if child.target %} target="{{ child.target }}"{% endif %}
+                      >{{ child.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {%- else -%}
+              <li class="masthead__menu-item">
+                <a
+                  href="{{ link.url | relative_url }}"
+                  {% if link.description %} title="{{ link.description }}"{% endif %}
+                  {% if link.target %} target="{{ link.target }}"{% endif %}
+                >{{ link.title }}</a>
+              </li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
         {% if site.search == true %}

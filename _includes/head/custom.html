@@ -16,4 +16,37 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 {% endif %}
 
+<!-- Masthead "Projects" dropdown menu -->
+<style>
+  .masthead__menu-item--has-children { position: relative; }
+  .masthead__menu-caret { font-size: 0.7em; opacity: 0.7; }
+  .masthead__submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0.25em 0;
+    list-style: none;
+    min-width: 15em;
+    background: #fff;
+    border: 1px solid #f2f3f3;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+  }
+  .masthead__menu-item--has-children:hover .masthead__submenu,
+  .masthead__menu-item--has-children:focus-within .masthead__submenu {
+    display: block;
+  }
+  .masthead__submenu li { margin: 0; }
+  .masthead__submenu a {
+    display: block;
+    padding: 0.4em 1em;
+    white-space: nowrap;
+    font-size: 0.85em;
+  }
+  .masthead__submenu a:hover { background: #f8f9f9; text-decoration: none; }
+</style>
+
 <!-- end custom head snippets -->
