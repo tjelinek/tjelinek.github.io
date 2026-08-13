@@ -10,7 +10,7 @@ excerpt: "A differentiable-rendering approach to joint 6DoF pose and mesh recove
 
 *Discontinued research project. The lessons fed directly into the [correspondence-based reconstruction pipeline](/reconstruction/).*
 
-Building on the model-free tracker of Rozumnyi et al., we are given a video stream $$\{I_1, \dots, I_n\}$$ of a rigid object and an initial segmentation mask $$S_1$$, and we seek globally consistent 6DoF poses $$\mathbf{p}_1, \dots, \mathbf{p}_n$$ together with a 3D model represented as a mesh $$M$$. Under the rigidity assumption $$M$$ is constant across frames; it is recovered by deforming per-vertex offsets from a prototype (a sphere whose radius matches the projected object in $$I_1$$) through a differentiable renderer.
+Building on the model-free tracker of Rozumnyi et al. [1], we are given a video stream $$\{I_1, \dots, I_n\}$$ of a rigid object and an initial segmentation mask $$S_1$$, and we seek globally consistent 6DoF poses $$\mathbf{p}_1, \dots, \mathbf{p}_n$$ together with a 3D model represented as a mesh $$M$$. Under the rigidity assumption $$M$$ is constant across frames; it is recovered by deforming per-vertex offsets from a prototype (a sphere whose radius matches the projected object in $$I_1$$) through a differentiable renderer.
 
 The poses and mesh are fit over a sparse keyframe set $$K_n \subseteq \{1, \dots, n-1\}$$. Let $$\hat{I}_i$$ and $$\hat{S}_i$$ be the appearance and silhouette rendered from $$M$$ at pose $$\mathbf{p}_i = (T_i, Q_i)$$ (translation and unit quaternion), $$F(I_i)$$ the deep features of frame $$I_i$$, $$S_i$$ its input segmentation, and $$\mu_n = (\lvert K_n \rvert + 1)^{-1}$$. The appearance term uses a Cauchy robust norm $$\lVert \cdot \rVert_\gamma$$, the silhouette term an IoU plus a distance-transform ($$\mathrm{DT}$$) penalty:
 
@@ -28,7 +28,7 @@ $$
 L_M = \max\!\Big(0, \tfrac{\lVert T_k - T_n \rVert_2}{n - k} - \nu_T\Big) + \max\!\Big(0, \tfrac{\angle(Q_k, Q_n)}{n - k} - \nu_Q\Big),
 $$
 
-a texture total-variation term $$L_T$$ smooths the feature map, and a Laplacian term $$L_L$$ pulls every vertex toward the centroid of its one-ring neighbourhood $$N(v)$$,
+a texture total-variation term $$L_T$$ smooths the feature map, and a Laplacian term [2] $$L_L$$ pulls every vertex toward the centroid of its one-ring neighbourhood $$N(v)$$,
 
 $$
 L_L = \sum_{v \in M} \Big\lVert v - \tfrac{1}{|N(v)|}\!\!\sum_{u \in N(v)}\! u \Big\rVert_2^2 .
@@ -46,4 +46,14 @@ $$
 
 between the flow induced by the relative pose $$\Delta\mathbf{p}_{ij}$$ of frames $$i$$ and $$j$$ and the observed flow $$W^{i \to j}$$, over $$\Delta\mathbf{p}_{ij} \in SE(3)$$ with a Levenberg-Marquardt solver, where $$X(x)$$ is the mesh surface point at $$x$$ in frame $$i$$. A subtle bias shows up here: if the object rotates about a vertical image-plane axis, the translation estimate that minimizes the flow error at frame $$i+1$$ inherits and amplifies the error from frame $$i$$, so $$\epsilon_{i+1} > \epsilon_i$$.
 
-The decisive obstacle was occlusion. Neither optical flow (RAFT, MFT) nor dense matchers (RoMa) reliably predict occlusion, and, worse, the occluded matches were spatially correlated rather than independent. That correlation violates the core assumption of RANSAC, so even RANSAC-filtered correspondences stayed contaminated. Circular and transitive correspondence checks could catch some of it, but only by slowing an already slow pipeline further. The project was discontinued, and the insight that correspondence outliers are correlated (not independent) carried directly into the design of the [correspondence-based pipeline](/reconstruction/).
+The decisive obstacle was occlusion. Neither optical flow (RAFT [3], MFT [4]) nor dense matchers (RoMa [5]) reliably predict occlusion, and, worse, the occluded matches were spatially correlated rather than independent. That correlation violates the core assumption of RANSAC, so even RANSAC-filtered correspondences stayed contaminated. Circular and transitive correspondence checks could catch some of it, but only by slowing an already slow pipeline further. The project was discontinued, and the insight that correspondence outliers are correlated (not independent) carried directly into the design of the [correspondence-based pipeline](/reconstruction/).
+
+---
+
+**References**
+
+[1] D. Rozumnyi, J. Matas, M. Pollefeys, V. Ferrari, M. R. Oswald. *Tracking by 3D Model Estimation of Unknown Objects in Videos.* ICCV, 2023.<br>
+[2] M. Desbrun, M. Meyer, P. Schröder, A. H. Barr. *Implicit Fairing of Irregular Meshes Using Diffusion and Curvature Flow.* SIGGRAPH, 1999.<br>
+[3] Z. Teed, J. Deng. *RAFT: Recurrent All-Pairs Field Transforms for Optical Flow.* ECCV, 2020.<br>
+[4] M. Neoral, J. Šerých, J. Matas. *MFT: Long-Term Tracking of Every Pixel.* WACV, 2024.<br>
+[5] J. Edstedt, Q. Sun, G. Bökman, M. Wadenbäck, M. Felsberg. *RoMa: Robust Dense Feature Matching.* CVPR, 2024.
