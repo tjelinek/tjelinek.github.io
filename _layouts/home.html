@@ -66,6 +66,24 @@ layout: archive
       min-width: 100%;
     }
   }
+
+  /* The theme reserves 200px / 300px of right padding on .archive for a right
+     sidebar (table of contents), which this page does not use. Reclaim most of
+     it on desktop so the text column is not needlessly narrow. Scoped to the
+     home layout; other pages keep the theme default. */
+  @media (min-width: 1024px) {
+    .archive {
+      width: calc(100% - 40px);
+      padding-right: 40px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .archive {
+      width: calc(100% - 60px);
+      padding-right: 60px;
+    }
+  }
 </style>
 
 <p>
