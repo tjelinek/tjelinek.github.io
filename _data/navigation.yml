@@ -3,6 +3,8 @@ main:
   - title: "Projects"
     url: /projects/
     children:
+      - title: "3D Object Reconstruction"
+        url: https://tjelinek.github.io/oma/
       - title: "Dense Tracking"
         url: /dense-tracking/
       - title: "Template Condensation"
