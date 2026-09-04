@@ -29,7 +29,7 @@ The problem looks simple, and its solution is arguably a fairly plain structure-
 
 If I started over, I would move closer to an end-to-end solution in the spirit of NeMO [\[6\]](#ref-6): an encoder that produces the reconstruction alongside a latent representation, and a decoder that detects the object, computes a matching, and directly regresses a pose consistent with that matching.
 
-**Links.** Manuscript (in preparation, 2026), Jelínek, Mishkin, Matas, available on request. [Code](https://github.com/tjelinek/GloPose).
+**Links.** Manuscript (in preparation, 2026), Jelínek, Mishkin, Matas, available on request. [Project page](https://tjelinek.github.io/oma/). [Code](https://github.com/tjelinek/oma).
 
 ---
 
